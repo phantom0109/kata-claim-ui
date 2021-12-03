@@ -1,0 +1,145 @@
+body {
+  background-color: #0d0512;
+}
+.landing {
+  text-align: center;
+  min-height: calc(100vh - 170px);
+  // font-family: "Poppins";
+
+  .katana-img {
+    width: 100%;
+    height: auto;
+  }
+  .katana{
+    margin: auto;
+  }
+
+  .span-cls{
+    padding: 8px 12px 8px 12px;
+    background-color: #8D5C00;
+    width: 100%;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+
+  .upper-text{
+    font-weight: bold;
+    color: #FEA604;
+    span{
+      display: inline-block;
+      color: white;
+    }
+  }
+
+  .page-loading{
+      text-align: center;
+      margin: auto;
+  }
+  .body-bg {
+    // background-color: #171319;
+    background-color: rgb(13,5,18);
+    height: 100% !important;
+    display: inline-flex;
+  }
+
+  .count-number-pad{
+    padding: 7px;
+    font-weight: bold;
+  }
+
+  .count-pad {
+    border-radius:0.5rem;
+    background-color: #FEA604;
+  }
+
+  .span-bg-text{
+    background-color:#dad0bd;
+    font-size: 20px;
+  }
+
+  .progress-bar {
+    background-color: #524347;
+    border-radius: 25px;
+    width: 100%;
+    .bar {
+      background-color: #FEA604;
+      border-radius: 25px;
+      height: 15px;
+    }
+  }
+
+  .invest-range {
+    color: #524347; 
+  }
+
+  .input_sec{
+    background-color: #524347;
+    border-radius: 10px;
+  }
+  .custom_input {
+    background-color: #524347;
+    color: white !important;
+    // font-size: 2rem !important;
+    font-weight: bold;
+    border: none;
+    text-align: right;
+    border-radius: 10px;
+  }
+
+  .live-notice{
+    font-size: 24px;
+  }
+
+  .skew-btn{
+    transform: skew(-20deg) !important;
+    background: #FEA604;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    min-width: 40%;
+    .content{
+      transform: skew(0deg) !important;
+    }
+  }
+  // .skew-btn:hover{
+  //   transform: skew(-20deg) !important;
+  //   background: #FEA604;
+  //   border: none;
+  //   color: white;
+  //   .content{
+  //     transform: skew(0deg) !important;
+  // }
+
+  .contribution-span{
+    font-size: 15px;
+  }
+
+  .BNB-span{
+    color: #FEA604;
+  }
+  .cliam-color{
+    color: #794f01;
+  }
+  .no-kata-purchased{
+    color:#FEA604;
+  }
+  .no-presale-start{
+    color:#FEA604;
+  }
+  .no-cliam-start{
+    color:#FEA604;
+  }
+  .cliam-now-color{
+    color:#FEA604;
+  }
+  .cliam-info{
+    color: rgb(136, 133, 133);
+  }
+  .tokenAmount{
+    color: rgb(136, 133, 133);
+  }
+  .max-eth{
+    color: rgb(136, 133, 133);
+  }
+}

@@ -1,0 +1,46 @@
+.kata-header {
+  background-color: #171319;
+  width: 100%;
+
+  &__logo {
+    height: 55px;
+    margin:15px 15px 15px 70px;
+  }
+
+  &__link{
+    margin: 10px;
+    color: white;
+  }
+
+  &__connect-wallet-btn{
+    border-radius: 25px;
+    border-width: 1px;
+    // margin-top: auto;
+    // margin-bottom: auto;
+    border-color: #FEA604;
+    background-color: transparent;
+    color: #FEA604;
+  }
+  
+  &__connect-wallet-btn:hover, &__connect-wallet-btn:active, &__connect-wallet-btn:checked {
+    background-color: #FEA604 !important;
+    color: white !important;
+  }
+  // .connect-button {
+  //   border: 0px;
+  //   border-radius: 16px;
+  //   box-shadow: rgb(14 14 44 / 40%) 0px -1px 0px 0px inset;
+  //   cursor: pointer;
+  //   background-color: rgb(31, 115, 212);
+  //   color: white;
+  // }
+  
+  // .connect-button:hover {
+  //   border-color: gray;
+  // }
+  
+  &__wallet-icon {
+    margin-right: 10px;
+  }
+}
+  
