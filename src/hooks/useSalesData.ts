@@ -9,7 +9,8 @@ const useSalesData = () => {
     try {
       const data = await utils.getPresaleData();
       setSalesData(data);
-      console.log("Sales Data:", data);
+      if ((window as any).debugMode)
+        console.log("Sales Data:", data);
     } catch (e) {
       console.log(e);
     }

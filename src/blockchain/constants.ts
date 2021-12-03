@@ -16,7 +16,7 @@ export const networkNames = {
 export const addresses = {
   Presale: {
     1337: '0x607DA9BCa16c2c20Fb17DAA70AC184B2B4Bbc79A',
-    42: '0x20D21b2319c023c7467A3f19ad81f8d1DcEAdF56',
+    42: '0x133727CC271771079686f986FA81cD08906b343f',
   },
 }
 
@@ -34,7 +34,7 @@ export const tokenInfos = {
     symbol: '$KATA',
     address: {
       1337: '0x460017232eb6EFB550C4CF34009f8AAA6477c5255',
-      42: '0x5958058Cbd8312E3EA04BA1B8ce82A775a48557D',
+      42: '0x2b38E4fDB82076de45809d0985c3B75364708AA1',
     },
     decimals: 18,
   },

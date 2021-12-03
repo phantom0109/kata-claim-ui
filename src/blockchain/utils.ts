@@ -93,6 +93,7 @@ export const getPresaleData = async () => {
 
   const tokenPrice = await presale.call("price");
   const ethRaised = await presale.call("ethRaised");
+  const totalGoal = await presale.call("fundingGoal");
 
   let currentTime = moment().unix();
   let status = 0;
@@ -114,6 +115,6 @@ export const getPresaleData = async () => {
     startTime,
     endTime,
     tgeTime,
-    totalGoal: 100,
+    totalGoal: BntoNum(totalGoal, tokenInfos.ETH.decimals)
   };
 }
