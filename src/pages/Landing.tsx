@@ -61,7 +61,7 @@ const Landing = () => {
                       </div>
                     </div>
                     <div className="mt-1">
-                      <h4 className="mt-3 font-weight-bold contribution-span">Contribution: {percent}%</h4>
+                      <h4 className="mt-3 font-weight-bold contribution-span">Progress: {percent}%</h4>
                       <h3 className="font-weight-bold BNB-span">{toFixed(salesData.ethRaised, 2)} ETH / {toFixed(salesData.totalGoal,2)}</h3>
                       <div className="mt-3">Current Price</div>
                       <h3 className="mt-2 font-weight-bold">1ETH = {toFixed(salesData.tokenPrice, 2)}$KATA</h3>
