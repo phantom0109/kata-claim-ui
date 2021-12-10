@@ -81,6 +81,7 @@ export const getPercent = (salesData) => {
   return toFixed(salesData.ethRaised / salesData.totalGoal * 100, 1);
 }
 
+
 export const getPresaleData = async () => {
   const presale = new Presale(getDefaultContractOptions(), addresses.Presale[defaultChainId]);
 
@@ -105,7 +106,7 @@ export const getPresaleData = async () => {
     status = 2;
   else
     status = 3;
-  
+
   return {
     minInvestFund: BntoNum(minInvestFund, tokenInfos.ETH.decimals),
     maxInvestFund: BntoNum(maxInvestFund, tokenInfos.ETH.decimals),

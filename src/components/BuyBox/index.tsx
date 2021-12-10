@@ -1,5 +1,5 @@
 
-import ETH from "../../assets/eth.svg";
+import ETH from "assets/eth.svg";
 import { Button, Form } from "react-bootstrap";
 import useAccountData from '../../hooks/useAccountData';
 import { toFixed } from '../../blockchain/utils';

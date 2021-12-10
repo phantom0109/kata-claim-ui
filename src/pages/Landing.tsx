@@ -1,4 +1,4 @@
-import { useContext, useCallback, useEffect} from 'react';
+import { useContext, useCallback, useEffect } from 'react';
 import { Container, Col, Row, Button } from "react-bootstrap";
 import katanabg from "assets/katana-bg.png"
 import { toFixed, getPercent, getTargetTime } from 'blockchain/utils';
@@ -65,6 +65,7 @@ const Landing = () => {
                       <h3 className="font-weight-bold BNB-span">{toFixed(salesData.ethRaised, 2)} ETH / {toFixed(salesData.totalGoal,2)}</h3>
                       <div className="mt-3">Current Price</div>
                       <h3 className="mt-2 font-weight-bold">1ETH = {toFixed(salesData.tokenPrice, 2)}$KATA</h3>
+                    
                       <div className="invest-range my-3 d-flex justify-content-between">
                         <div className="d-inline float-left"><h6>min: {salesData.minInvestFund} ETH</h6></div>
                         <div className="d-inline float-right"><h6>max: {salesData.maxInvestFund} ETH</h6></div>
