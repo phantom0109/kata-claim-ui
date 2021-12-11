@@ -80,7 +80,7 @@ const Landing = () => {
                               Connect Wallet To Access Presale!
                             </div>
                             <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
-                              CONNECT WALLECT
+                              CONNECT WALLET
                             </Button>
                         </div>
                       ):(

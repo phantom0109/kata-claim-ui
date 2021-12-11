@@ -54,7 +54,7 @@ const Header = () => {
       <div className="d-flex pe-4">
           {!account ? (
             <Button className="kata-header__connect-wallet-btn mx-3 my-3" onClick={handleConnectWallet}>
-              CONNECT WALLECT
+              CONNECT WALLET
             </Button>
           ) : (
             <Dropdown className="align-self-center">
