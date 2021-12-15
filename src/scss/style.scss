@@ -14,17 +14,9 @@ body {
     margin: auto;
   }
 
-  .span-cls{
-    padding: 8px 12px 8px 12px;
-    background-color: #8D5C00;
-    width: 100%;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-  }
-
   .upper-text{
     font-weight: bold;
-    color: #FEA604;
+    color: #8eFB79;
     span{
       display: inline-block;
       color: white;
@@ -42,36 +34,6 @@ body {
     display: inline-flex;
   }
 
-  .count-number-pad{
-    padding: 7px;
-    font-weight: bold;
-  }
-
-  .count-pad {
-    border-radius:0.5rem;
-    background-color: #FEA604;
-  }
-
-  .span-bg-text{
-    background-color:#dad0bd;
-    font-size: 20px;
-  }
-
-  .progress-bar {
-    background-color: #524347;
-    border-radius: 25px;
-    width: 100%;
-    .bar {
-      background-color: #FEA604;
-      border-radius: 25px;
-      height: 15px;
-    }
-  }
-
-  .invest-range {
-    color: #524347; 
-  }
-
   .input_sec{
     background-color: #524347;
     border-radius: 10px;
@@ -85,13 +47,9 @@ body {
     text-align: right;
     border-radius: 10px;
   }
-  
-  .live-notice{
-    font-size: 24px;
-  }
 
   .skew-btn{
-    background: #FEA604;
+    background: #429B2B;
     border: none;
     color: white;
     font-size: 20px;
@@ -101,44 +59,29 @@ body {
       transform: skew(0deg) !important;
     }
   }
-  // .skew-btn:hover{
-  //   transform: skew(-20deg) !important;
-  //   background: #FEA604;
-  //   border: none;
-  //   color: white;
-  //   .content{
-  //     transform: skew(0deg) !important;
-  // }
 
-  .contribution-span{
-    font-size: 15px;
-  }
-
-  .BNB-span{
-    color: #FEA604;
+  .ETH-span{
+    color: #3BCF60;
   }
   .cliam-color{
-    color: #794f01;
+    color: #3BCF60;
   }
   .no-kata-purchased{
-    color:#FEA604;
+    color:#3BCF60;
   }
-  .no-presale-start{
-    color:#FEA604;
+  .no-seedsale-start{
+    color:#3BCF60;
   }
   .no-cliam-start{
-    color:#FEA604;
+    color:#3BCF60;
   }
   .cliam-now-color{
-    color:#FEA604;
+    color:#3BCF60;
   }
   .cliam-info{
     color: rgb(136, 133, 133);
   }
-  .tokenAmount{
-    color: rgb(136, 133, 133);
-  }
-  .max-eth{
-    color: rgb(136, 133, 133);
+  .price {
+    color:#3BCF60;
   }
 }

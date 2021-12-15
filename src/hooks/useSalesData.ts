@@ -7,7 +7,7 @@ const useSalesData = () => {
 
   const fetchSalesData = useCallback(async () => {
     try {
-      const data = await utils.getPresaleData();
+      const data = await utils.getSeedsaleData();
       setSalesData(data);
       if ((window as any).debugMode)
         console.log("Sales Data:", data);

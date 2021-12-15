@@ -13,17 +13,17 @@
   }
 
   &__connect-wallet-btn{
-    border-radius: 25px;
-    border-width: 1px;
-    border-color: #FEA604;
-    background-color: transparent;
-    color: #FEA604;
+    border-radius: 25px !important;
+    border-width: 1px !important;
+    border-color: #429B2B !important;
+    background-color: #429B2B !important;
+    color: white !important;
   }
   
   &__connect-wallet-btn:hover, &__connect-wallet-btn:active, &__connect-wallet-btn:checked, &__connect-wallet-btn:focus{
-    background-color: #FEA604 !important;
-    border-color: #FEA604;
-    box-shadow:#FEA604 !important;
+    background-color: #429B2B !important;
+    border-color: #429B2B;
+    box-shadow:#429B2B !important;
     color: white !important;
   }
   

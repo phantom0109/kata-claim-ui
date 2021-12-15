@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import { addresses, tokenInfos } from './constants';
-import  Presale from "./contracts/Presale";
+import  Seedsale from "./contracts/Seedsale";
 import ERC20 from "./contracts/ERC20";
 import { BntoNum, NumToBn } from './utils';
 
@@ -11,7 +11,7 @@ export default class Web3Wrapper {
     wrapperOptions: any;
 
     kataToken: ERC20;
-    Presale: Presale;
+    Seedsale: Seedsale;
 
     constructor(web3, chainId, account, options = {}) {
 
@@ -25,14 +25,15 @@ export default class Web3Wrapper {
         }
 
         this.kataToken = new ERC20(this.wrapperOptions, tokenInfos.KATA.address[this.chainId]);
-        this.Presale = new Presale(this.wrapperOptions, addresses.Presale[this.chainId]);
+        this.Seedsale = new Seedsale(this.wrapperOptions, addresses.Seedsale[this.chainId]);
     } 
     async getAccountData() {
-        const kataBalance = await this.Presale.call("buyTokens", this.account);
+
+        const kataBalance = await this.Seedsale.call("buyTokens", this.account);
         const ethBalacne = await this.web3.eth.getBalance(this.account);
-        const tokensAvailable = await this.Presale.call("getClaimable");
-        const claimed = await this.Presale.call("claimedTokens", this.account);
-        
+        const tokensAvailable = await this.Seedsale.call("getClaimable");
+        const claimed = await this.Seedsale.call("claimedTokens", this.account);
+
         return {
             kataBalance: BntoNum(kataBalance, tokenInfos.KATA.decimals),
             ethBalance: BntoNum(ethBalacne, tokenInfos.ETH.decimals),
@@ -41,19 +42,9 @@ export default class Web3Wrapper {
         }
     }    
 
-    async buy(ETHValue) {
-        try {
-            const tx = await this.Presale.send("buy", {value: NumToBn(ETHValue, tokenInfos.ETH.decimals)});
-            return tx;
-        } catch (e) {
-            console.log(e);
-            return false;
-        }
-    }
-
     async claim() {
         try {
-            const tx = await this.Presale.send("claim", null);
+            const tx = await this.Seedsale.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);

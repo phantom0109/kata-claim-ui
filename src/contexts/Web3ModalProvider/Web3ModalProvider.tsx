@@ -2,8 +2,8 @@ import { createContext, useCallback, useEffect, useState } from 'react';
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Web3 from 'web3';
-import { createWeb3 } from '../../blockchain/utils';
-import { rpcUrls} from "../../blockchain/constants";
+import { createWeb3 } from 'blockchain/utils';
+import { rpcUrls } from 'blockchain/constants';
 
 interface IWeb3ModalContext {
   web3: Web3 | null;
@@ -41,9 +41,9 @@ const Web3ModalProvider = ({ children }) => {
         package: WalletConnectProvider,
         options: {
           rpc: {
-            1337: rpcUrls[1337]
+            42: rpcUrls[42],
           },
-          network: 'localhost8545',
+          network: 'kovan',
         }
       }
     };
@@ -73,19 +73,19 @@ const Web3ModalProvider = ({ children }) => {
       resetWeb3();
     });
     _provider.on("accountsChanged", async (accounts: string[]) => {
-      setAccount(accounts[0]);
+      setAccount(_web3.utils.toChecksumAddress(accounts[0]));
     });
     _provider.on("chainChanged", async (chainId: number) => {
       console.log("Chain changed: ", chainId);
       const networkId = await _web3.eth.net.getId();
-      setChainId(chainId);
-      setNetworkId(networkId);
+      setChainId(Number(chainId));
+      setNetworkId(Number(networkId));
     });
 
     _provider.on("networkChanged", async (networkId: number) => {
       const chainId = await _web3.eth.getChainId();
-      setChainId(chainId);
-      setNetworkId(networkId);
+      setChainId(Number(chainId));
+      setNetworkId(Number(networkId));
     });
   }, [resetWeb3])
 
@@ -103,13 +103,13 @@ const Web3ModalProvider = ({ children }) => {
     await subscribeProvider(_provider, _web3);
     
     const accounts = await _web3.eth.getAccounts();
-    const _account = accounts[0];
+    const _account = _web3.utils.toChecksumAddress(accounts[0]);
     const _networkId = await _web3.eth.net.getId();
     const _chainId = await _web3.eth.getChainId();
 
     setAccount(_account);
-    setNetworkId(_networkId);
-    setChainId(_chainId);
+    setNetworkId(Number(_networkId));
+    setChainId(Number(_chainId));
     setConnected(true);
     
   }, [web3Modal, subscribeProvider]);

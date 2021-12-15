@@ -1,7 +1,7 @@
 {
-  "short_name": "$KATA Presale",
-  "name": "Katana Inu Presale | $KATA ERC-20",
-  "description": "Presale interface for $KATA ERC-20 token",
+  "short_name": "$KATA Seedsale",
+  "name": "Katana Inu Seedsale | $KATA ERC-20",
+  "description": "Seedsale interface for $KATA ERC-20 token",
   "icons": [
     {
       "src": "favicon.ico",

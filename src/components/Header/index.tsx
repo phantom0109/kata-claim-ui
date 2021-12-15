@@ -1,10 +1,11 @@
 import "./style.scss";
 
-import { Button, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext, useCallback } from "react";
 import { ellipseAddress } from "utils/blockchain";
 import { Web3ModalContext } from "contexts/Web3ModalProvider";
+import Button from '@mui/material/Button';
 
 import Logo from "assets/katana-logo.png";
 // import Search from "assets/search.png";
@@ -53,7 +54,7 @@ const Header = () => {
       </div>
       <div className="d-flex pe-4">
           {!account ? (
-            <Button className="kata-header__connect-wallet-btn mx-3 my-3" onClick={handleConnectWallet}>
+            <Button variant="outlined" className="kata-header__connect-wallet-btn mx-3 my-3" onClick={handleConnectWallet}>
               CONNECT WALLET
             </Button>
           ) : (

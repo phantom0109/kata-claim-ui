@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import useAccountData from 'hooks/useAccountData';
 import LoaderSpinner from "react-loader-spinner";
-import { toFixed, getDateStr } from 'blockchain/utils';
+import { toFixed } from 'blockchain/utils';
 import { tokenInfos } from 'blockchain/constants';
 import { useState, useCallback, useContext } from 'react';
 import { NotificationManager } from 'react-notifications';
@@ -10,7 +10,6 @@ import {Web3WrapperContext} from "contexts/Web3WrapperProvider";
 const CliamBox = (props) => {
 
   const accountData = useAccountData();
-  const { salesData } = props;
   const { web3Wrapper: wrapper } = useContext(Web3WrapperContext);
   const [claimRequested, setClaimReqeusted] = useState<boolean>(false);
   
@@ -43,24 +42,17 @@ const CliamBox = (props) => {
         
         <LoaderSpinner
             type="ThreeDots"
-            color="#FEA604"
+            color="#429B2B"
             height={30}
             width={30}
         />
         
       ):(
           accountData.kataBalance? (
-            salesData.status === 2 ? (
-              <div className="justify-content-between px-5 mb-1">
-                <h2 className="font-weight-bold">Purchased: {toFixed(accountData.kataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                <h3 className="no-cliam-start">$KATA starts being unlocked from</h3>
-                <h3 className="no-cliam-start">{getDateStr(salesData.tgeTime)}</h3>
-              </div>
-            ):(
               <div className='mt-3 '>
                 <div className="d-flex justify-content-between px-1 mb-1">
                   <h5 className="cliam-info">Purchased:</h5>
-                  <h3 className="font-weight-bold cliam-color">{toFixed(accountData.kataBalance, 2)} {tokenInfos.KATA.symbol}</h3>
+                  <h3 className="font-weight-bold cliam-color">{toFixed(accountData.kataBalance ,2)}</h3>
                 </div>
                 <div className="d-flex justify-content-between px-1 mb-1">
                     <h5 className="cliam-info">Claimed: </h5>
@@ -78,13 +70,13 @@ const CliamBox = (props) => {
                     disabled={claimRequested}
                 >
                     {claimRequested?"Claiming...":`${getClaimText()}`}
+                    
                 </Button>
                 </div>
               </div>
-            )
           )
           :
-          <h3 className="font-weight-bold no-kata-purchased">No $KATA you purchased</h3>
+          <h3 className="font-weight-bold no-kata-purchased">You can't buy $KATA in Seedsale</h3>
       )}
     </>
   )
