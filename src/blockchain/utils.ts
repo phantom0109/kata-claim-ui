@@ -63,18 +63,18 @@ export const getDateStr = (tiemstamp) => {
   return output;
 }
 
-export const getTargetTime = (salesData) => {
-  if (!salesData) return {};
+// export const getTargetTime = (salesData) => {
+//   if (!salesData) return {};
 
-  if (salesData.status === 2 || salesData.status === 3)
-    return { targetTime: null, timerTitle: "Seedsale Ended" };
-  else if (salesData.status === 1)
-    return { targetTime: salesData.endTime, timerTitle: "Seedsale is Live" };
-  else if (salesData.status === 0)
-    return { targetTime: salesData.startTime, timerTitle: "Seedsale starts soon" };
+//   if (salesData.status === 2 || salesData.status === 3)
+//     return { targetTime: null, timerTitle: "Seedsale Ended" };
+//   else if (salesData.status === 1)
+//     return { targetTime: salesData.endTime, timerTitle: "Seedsale is Live" };
+//   else if (salesData.status === 0)
+//     return { targetTime: salesData.startTime, timerTitle: "Seedsale starts soon" };
   
-  return {};
-}
+//   return {};
+// }
 
 
 export const getSeedsaleData = async () => {
