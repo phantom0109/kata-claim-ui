@@ -47,7 +47,7 @@ const Landing = () => {
               <Col md={12} lg={6} className="pt-5 px-5">
                 <h1 className="mt-5 upper-text">
                   Katana Inu&nbsp;
-                  <span>NTF-Gaming</span>
+                  <span>NFT-Gaming</span>
                   &nbsp;SeedSale
                 </h1>
                 <div className="pt-5 px-2">
