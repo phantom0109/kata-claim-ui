@@ -42,9 +42,9 @@ export const BntoNum = (value, decimal = 18) => {
   return new BigNumber(value).shiftedBy(-decimal).toNumber();
 }
 
-export const NumToBn = (value, decimal = 18) => {
-  return new BigNumber(value).shiftedBy(decimal);
-}
+// export const NumToBn = (value, decimal = 18) => {
+//   return new BigNumber(value).shiftedBy(decimal);
+// }
 
 export const toFixed = (num, digit) => {
   if (isNaN(num)) return 0;

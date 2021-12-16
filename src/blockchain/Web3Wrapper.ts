@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import { addresses, tokenInfos } from './constants';
 import  Seedsale from "./contracts/Seedsale";
 import ERC20 from "./contracts/ERC20";
-import { BntoNum, NumToBn } from './utils';
+import { BntoNum } from './utils';
 
 export default class Web3Wrapper {
     web3: Web3;
