@@ -3,16 +3,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_startTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_endTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
         "name": "_tgeTime",
         "type": "uint256"
       }
@@ -95,76 +85,6 @@
   },
   {
     "inputs": [],
-    "name": "endTime",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "ethRaised",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "fundingGoal",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "maxETHAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "minETHAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
     "name": "owner",
     "outputs": [
       {
@@ -197,34 +117,6 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "soldAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  },
-  {
-    "inputs": [],
-    "name": "startTime",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
   },
   {
     "inputs": [],
@@ -269,14 +161,6 @@
   },
   {
     "inputs": [],
-    "name": "buy",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function",
-    "payable": true
-  },
-  {
-    "inputs": [],
     "name": "getClaimable",
     "outputs": [
       {
@@ -292,49 +176,6 @@
   {
     "inputs": [],
     "name": "claim",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "withdrawETH",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_startTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_endTime",
-        "type": "uint256"
-      }
-    ],
-    "name": "setSalesTime",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_minETHAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_maxETHAmount",
-        "type": "uint256"
-      }
-    ],
-    "name": "setETHrange",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -391,12 +232,17 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "_fundingGoal",
-        "type": "uint256"
+        "internalType": "address[]",
+        "name": "addrs",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "amounts",
+        "type": "uint256[]"
       }
     ],
-    "name": "setFundingGoal",
+    "name": "registerMember",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

@@ -76,7 +76,7 @@ const CliamBox = (props) => {
               </div>
           )
           :
-          <h3 className="font-weight-bold no-kata-purchased">You can't buy $KATA in Seedsale</h3>
+          <h3 className="font-weight-bold no-kata-purchased">This account is not whitelisted.</h3>
       )}
     </>
   )

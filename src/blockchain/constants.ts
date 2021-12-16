@@ -16,7 +16,7 @@ export const networkNames = {
 export const addresses = {
   Seedsale: {
     1337: '0x607DA9BCa16c2c20Fb17DAA70AC184B2B4Bbc79A',
-    42: '0xdc07c4E03C70Da11218eC55D17248b5c80d0e972',
+    42: '0x348f2c3fD7B745288fD3f15d6abd86bdC7C0Dd98',
   },
 }
 

@@ -29,7 +29,7 @@ export default class Web3Wrapper {
     } 
     async getAccountData() {
 
-        const kataBalance = await this.Seedsale.call("buyTokens", this.account);
+        const kataBalance = await this.Seedsale.call("buyTokens", this.account)
         const ethBalacne = await this.web3.eth.getBalance(this.account);
         const tokensAvailable = await this.Seedsale.call("getClaimable");
         const claimed = await this.Seedsale.call("claimedTokens", this.account);
