@@ -12,7 +12,7 @@ export const networkNames = {
 
 export const addresses = {
   Claim: {
-    42: '0x348f2c3fD7B745288fD3f15d6abd86bdC7C0Dd98',
+    42: '0x9D2EF314A03E663aE7e35D030ed1723a5DdFc745',
   },
 }
 
