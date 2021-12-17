@@ -1,7 +1,7 @@
 {
-  "short_name": "$KATA Seedsale",
-  "name": "Katana Inu Seedsale | $KATA ERC-20",
-  "description": "Seedsale interface for $KATA ERC-20 token",
+  "short_name": "$KATA Claim",
+  "name": "Katana Inu Claim | $KATA ERC-20",
+  "description": "Claim interface for $KATA ERC-20 token",
   "icons": [
     {
       "src": "favicon.ico",

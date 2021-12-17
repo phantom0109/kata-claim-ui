@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import { addresses, defaultChainId, rpcUrls } from './constants';
-import Seedsale from './contracts/Seedsale';
+import Claim from './contracts/Claim';
 import { BigNumber } from "bignumber.js";
 import moment from "moment";
 
@@ -63,26 +63,12 @@ export const getDateStr = (tiemstamp) => {
   return output;
 }
 
-// export const getTargetTime = (salesData) => {
-//   if (!salesData) return {};
+export const getClaimData = async () => {
+  const claim = new Claim(getDefaultContractOptions(), addresses.Claim[defaultChainId]);
 
-//   if (salesData.status === 2 || salesData.status === 3)
-//     return { targetTime: null, timerTitle: "Seedsale Ended" };
-//   else if (salesData.status === 1)
-//     return { targetTime: salesData.endTime, timerTitle: "Seedsale is Live" };
-//   else if (salesData.status === 0)
-//     return { targetTime: salesData.startTime, timerTitle: "Seedsale starts soon" };
-  
-//   return {};
-// }
+  const tgeTime = Number(await claim.call("tgeTime"));
 
-
-export const getSeedsaleData = async () => {
-  const seedsale = new Seedsale(getDefaultContractOptions(), addresses.Seedsale[defaultChainId]);
-
-  const tgeTime = Number(await seedsale.call("tgeTime"));
-
-  const tokenPrice = await seedsale.call("price");
+  const tokenPrice = await claim.call("price");
 
 
   let currentTime = moment().unix();

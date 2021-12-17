@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import { addresses, tokenInfos } from './constants';
-import  Seedsale from "./contracts/Seedsale";
+import  Claim from "./contracts/Claim";
 import ERC20 from "./contracts/ERC20";
 import { BntoNum } from './utils';
 
@@ -11,7 +11,7 @@ export default class Web3Wrapper {
     wrapperOptions: any;
 
     kataToken: ERC20;
-    Seedsale: Seedsale;
+    Claim: Claim;
 
     constructor(web3, chainId, account, options = {}) {
 
@@ -25,14 +25,14 @@ export default class Web3Wrapper {
         }
 
         this.kataToken = new ERC20(this.wrapperOptions, tokenInfos.KATA.address[this.chainId]);
-        this.Seedsale = new Seedsale(this.wrapperOptions, addresses.Seedsale[this.chainId]);
+        this.Claim = new Claim(this.wrapperOptions, addresses.Claim[this.chainId]);
     } 
     async getAccountData() {
 
-        const kataBalance = await this.Seedsale.call("buyTokens", this.account)
+        const kataBalance = await this.Claim.call("buyTokens", this.account)
         const ethBalacne = await this.web3.eth.getBalance(this.account);
-        const tokensAvailable = await this.Seedsale.call("getClaimable");
-        const claimed = await this.Seedsale.call("claimedTokens", this.account);
+        const tokensAvailable = await this.Claim.call("getClaimable");
+        const claimed = await this.Claim.call("claimedTokens", this.account);
 
         return {
             kataBalance: BntoNum(kataBalance, tokenInfos.KATA.decimals),
@@ -44,7 +44,7 @@ export default class Web3Wrapper {
 
     async claim() {
         try {
-            const tx = await this.Seedsale.send("claim", null);
+            const tx = await this.Claim.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);
