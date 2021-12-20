@@ -67,7 +67,7 @@ export const getClaimData = async () => {
   const claim = new Claim(getDefaultContractOptions(), addresses.Claim[defaultChainId]);
 
   const tgeTime = Number(await claim.call("tgeTime"));
-
+  // const tgeCliffTime = Number(await claim.call("tgeCliffTime"));
   const tokenPrice = await claim.call("price");
 
 
@@ -84,6 +84,5 @@ export const getClaimData = async () => {
     tokenPrice: Number(tokenPrice),
     status,
     tgeTime,
-
   };
 }
