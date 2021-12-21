@@ -34,4 +34,4 @@ jobs:
           bucket-region: us-east-1
           delete-removed: true
           no-cache: true
-          private: true
+          private: false
