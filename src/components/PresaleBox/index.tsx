@@ -76,7 +76,8 @@ const PresaleBox = (props) => {
               </div>
           )
           :
-          <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
+          // <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
+          null
       )
       }
     </>

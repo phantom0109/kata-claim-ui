@@ -56,7 +56,17 @@ const Landing = () => {
             </Row>
             <Row className="text-center body-bg mt-2">
               <Col md={6} lg={4} className="katana">
-                <div className="pt-2 px-2">
+                {!accountData.seedsalekataBalance ? (
+                  claimData.status === 1 ? null :
+                  (
+                    <div className="justify-content-between px-5 mb-1">
+                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.seedsalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                    </div>
+                  )
+                ) : (
+                  <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Seedsale Claim</h2></div>
@@ -92,9 +102,21 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                )
+                }
               </Col>
               <Col md={6} lg={4} className="katana">
-                <div className="pt-2 px-2">
+                {
+                  !accountData.presalekataBalance ? (
+                    claimData.status === 1 ? null : (
+                      <div className="justify-content-between px-5 mb-1">
+                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.presalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                        <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                      </div>
+                    )
+                  ) : (
+                    <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Presale Claim</h2></div>
@@ -130,10 +152,21 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                  )
+                }
+                
               </Col>
               <Col md={6} lg={4} className="katana">
-                {/* <img src={katanabg} alt="" className="katana-img d-none d-sm-block" />   */}
-                <div className="pt-2 px-2">
+                { !accountData.teamkataBalance ? (
+                  claimData.status === 1 ? null : (
+                    <div className="justify-content-between px-5 mb-1">
+                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.teamkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                    </div>
+                  )
+                ) : (
+                  <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Team Claim</h2></div>
@@ -169,11 +202,22 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                )
+                }       
               </Col>
             </Row>
             <Row className="text-center body-bg mt-5 mb-5">
               <Col md={6} lg={4} className="katana">
-                <div className="pt-2 px-2">
+                { !accountData.airdropkataBalance ? (
+                  claimData.status === 1 ? null : (
+                    <div className="justify-content-between px-5 mb-1">
+                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.airdropkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                    </div>
+                  )
+                ) : (
+                  <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Airdrop Claim</h2></div>
@@ -209,9 +253,20 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                )
+                }  
               </Col>
               <Col md={6} lg={4} className="katana">
-                <div className="pt-2 px-2">
+                {
+                  !accountData.treasurykataBalance ? (
+                    claimData.status === 1 ? null : (
+                      <div className="justify-content-between px-5 mb-1">
+                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.treasurykataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                    </div> )
+                  ) : (
+                    <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Treasury Claim</h2></div>
@@ -247,10 +302,21 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                  )
+                }
               </Col>
               <Col md={6} lg={4} className="katana">
-                {/* <img src={katanabg} alt="" className="katana-img d-none d-sm-block" />   */}
-                <div className="pt-2 px-2">
+                {
+                  !accountData.developmentkataBalance ? (
+                    claimData.status === 1 ? null : (
+                      <div className="justify-content-between px-5 mb-1">
+                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.developmentkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                        <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                      </div>
+                    )
+                  ) : (
+                    <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Development Claim</h2></div>
@@ -286,11 +352,24 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                  )
+                }
               </Col>
             </Row>
             <Row className="text-center body-bg mb-5">
-              <Col md={6} lg={4} className="katana">
-                <div className="pt-2 px-2">
+             <Col md={6} lg={4} className="katana">
+              {
+                !accountData.marketingkataBalance ? (
+                  
+                    claimData.status === 1 ? null :
+                    <div className="justify-content-between px-5 mb-1">
+                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.marketingkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                    </div>
+                  
+                ) : (
+                  <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
                       <div className="mt-3"><h2>Marketing Claim</h2></div>
@@ -326,6 +405,8 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                )
+              }
               </Col>
             </Row>
         </Container>
