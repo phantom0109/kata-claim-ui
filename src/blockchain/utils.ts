@@ -1,8 +1,8 @@
 import Web3 from 'web3';
 import { addresses, defaultChainId, rpcUrls } from './constants';
-import Claim from './contracts/Claim';
 import { BigNumber } from "bignumber.js";
 import moment from "moment";
+import VestingContract from './contracts/VestingContract';
 
 export const createWeb3 = (provider) => {
 
@@ -64,12 +64,8 @@ export const getDateStr = (tiemstamp) => {
 }
 
 export const getClaimData = async () => {
-  const claim = new Claim(getDefaultContractOptions(), addresses.Claim[defaultChainId]);
-
-  const tgeTime = Number(await claim.call("tgeTime"));
-  // const tgeCliffTime = Number(await claim.call("tgeCliffTime"));
-  const tokenPrice = await claim.call("price");
-
+  const seesaleclaim = new VestingContract(getDefaultContractOptions(), addresses.seedsaleVesting[defaultChainId]);
+  const tgeTime = Number(await seesaleclaim.call("tgeTime"));
 
   let currentTime = moment().unix();
   let status = 0;
@@ -78,10 +74,8 @@ export const getClaimData = async () => {
     status = 1;
   else
     status = 0;
-
   return {
 
-    tokenPrice: Number(tokenPrice),
     status,
     tgeTime,
   };
