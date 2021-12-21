@@ -33,5 +33,5 @@ jobs:
           bucket: claim.katanainu.com
           bucket-region: us-east-1
           delete-removed: true
-          no-cache: true
-          private: false
+          no-cache: false
+          private: true
