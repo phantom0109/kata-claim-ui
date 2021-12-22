@@ -1,18 +1,15 @@
 body {
   background-color: #0d0512;
+  // position: absolute;
+  // z-index: 1;
 }
 .landing {
   text-align: center;
   min-height: calc(100vh - 170px);
-  // font-family: "Poppins";
-
-  .katana-img {
-    width: 100%;
-    height: auto;
-  }
-  .katana{
-    margin: auto;
-  }
+ 
+  // .katana{
+  //   margin: auto;
+  // }
 
   .upper-text{
     font-weight: bold;
@@ -28,16 +25,12 @@ body {
       margin: auto;
   }
   .body-bg {
-    // background-color: #171319;
     background-color: rgb(13,5,18);
     height: 100% !important;
     display: inline-flex;
+    width:100%;
   }
 
-  .input_sec{
-    background-color: #524347;
-    border-radius: 10px;
-  }
   .custom_input {
     background-color: #524347;
     color: white !important;
@@ -59,10 +52,6 @@ body {
       transform: skew(0deg) !important;
     }
   }
-
-  .ETH-span{
-    color: #3BCF60;
-  }
   .claim-color{
     color: #3BCF60;
   }
@@ -81,7 +70,9 @@ body {
   .claim-info{
     color: rgb(136, 133, 133);
   }
-  .price {
-    color:#3BCF60;
+  .box{
+    border: 2px solid;
+    border-radius: 10px;
+    border-color: rgb(136, 133, 133);
   }
 }
