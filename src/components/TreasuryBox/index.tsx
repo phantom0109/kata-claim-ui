@@ -20,7 +20,7 @@ const AirdropBox = (props) => {
       return;
     }
     setClaimReqeusted(true);
-    const txHash = await wrapper.teamclaim();
+    const txHash = await wrapper.treasuryclaim();
     setClaimReqeusted(false);
     if (!txHash) {
       NotificationManager.error('Claim Transaction Error');

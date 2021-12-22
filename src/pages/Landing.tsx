@@ -14,7 +14,8 @@ import AirdropBox from 'components/AirdopBox';
 import TreasuryBox from 'components/TreasuryBox';
 import DevelopmentBox from 'components/DevelopmentBox';
 import MarketingBox from 'components/MarketingBox';
-import PresaleBox from 'components/PresaleBox';
+import PrivatesaleBox from 'components/PrivatesaleBox';
+import PresaleClaimBox from 'components/PresaleClaimBox';
 
 const Landing = () => {
 
@@ -56,70 +57,70 @@ const Landing = () => {
             </Row>
             <Row className="text-center body-bg mt-2">
               <Col md={6} lg={4} className="katana">
-                {!accountData.seedsalekataBalance ? (
-                  claimData.status === 1 ? null :
-                  (
-                    <div className="justify-content-between px-5 mb-1">
-                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.seedsalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                    </div>
-                  )
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
                 ) : (
-                  <div className="pt-2 px-2">
-                  <div className="text-white box pt-2 pe-4 ps-4">
-                    <div className="mt-1">
-                      <div className="mt-3"><h2>Seedsale Claim</h2></div>
-                    </div>
-                    <hr/>
-                    {
-                      !account ?
-                      (
-                        <div>
-                            <div className="live-notice mt-3 mb-2">
-                              <h1>Connect Wallet To Access Claim!</h1>
-                            </div>
-                            <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
-                              CONNECT WALLET
-                            </Button>
-                        </div>
-                      ):(
-                        <>
-                          {
-                            claimData.status === 0 &&
-                            <div className="justify-content-between px-5 mb-1">
-                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.seedsalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                              <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                              <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                            </div>
-                          }
-                          {
-                            claimData.status === 1 && 
-                              <SeedsaleBox claimData={claimData}/>
-                          }
-                        </>
-                      )
-                    }
-                  </div>
-                </div>
+                  !accountData.seedsalekataBalance ? null
+                    : (
+                   <div className="pt-2 px-2">
+                   <div className="text-white box pt-2 pe-4 ps-4">
+                     <div className="mt-1">
+                       <div className="mt-3"><h2>Seedsale Claim</h2></div>
+                     </div>
+                     <hr/>
+                     {
+                       !account ?
+                       (
+                         <div>
+                             <div className="live-notice mt-3 mb-2">
+                               <h1>Connect Wallet To Access Claim!</h1>
+                             </div>
+                             <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
+                               CONNECT WALLET
+                             </Button>
+                         </div>
+                       ):(
+                         <>
+                           {
+                             claimData.status === 0 &&
+                             <div className="justify-content-between px-5 mb-1">
+                               <h2 className="font-weight-bold">Purchased: {toFixed(accountData.seedsalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                               <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                               <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                             </div>
+                           }
+                           {
+                             claimData.status === 1 && 
+                               <SeedsaleBox claimData={claimData}/>
+                           }
+                         </>
+                       )
+                     }
+                   </div>
+                 </div>
+                 )
                 )
                 }
               </Col>
               <Col md={6} lg={4} className="katana">
-                {
-                  !accountData.presalekataBalance ? (
-                    claimData.status === 1 ? null : (
-                      <div className="justify-content-between px-5 mb-1">
-                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.presalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                        <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                      </div>
-                    )
-                  ) : (
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                   />
+                ) : (
+                  !accountData.privatesalekataBalance ? null : (
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
-                      <div className="mt-3"><h2>Presale Claim</h2></div>
+                      <div className="mt-3"><h2>Privatesale Claim</h2></div>
                     </div>
                     <hr/>
                     {
@@ -138,14 +139,14 @@ const Landing = () => {
                           {
                             claimData.status === 0 &&
                             <div className="justify-content-between px-5 mb-1">
-                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.presalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.privatesalekataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
                               <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
                               <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
                             </div>
                           }
                           {
                             claimData.status === 1 && 
-                              <PresaleBox claimData={claimData}/>
+                              <PrivatesaleBox claimData={claimData}/>
                           }
                         </>
                       )
@@ -153,119 +154,123 @@ const Landing = () => {
                   </div>
                 </div>
                   )
+                )
                 }
                 
               </Col>
               <Col md={6} lg={4} className="katana">
-                { !accountData.teamkataBalance ? (
-                  claimData.status === 1 ? null : (
-                    <div className="justify-content-between px-5 mb-1">
-                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.teamkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                    </div>
-                  )
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
                 ) : (
-                  <div className="pt-2 px-2">
-                  <div className="text-white box pt-2 pe-4 ps-4">
-                    <div className="mt-1">
-                      <div className="mt-3"><h2>Team Claim</h2></div>
+                  !accountData.presaleclaimkataBalance ? null : (
+                    <div className="pt-2 px-2">
+                    <div className="text-white box pt-2 pe-4 ps-4">
+                      <div className="mt-1">
+                        <div className="mt-3"><h2>Presale Claim</h2></div>
+                      </div>
+                      <hr/>
+                      {
+                        !account ?
+                        (
+                          <div>
+                              <div className="live-notice mt-3 mb-2">
+                                <h1>Connect Wallet To Access Claim!</h1>
+                              </div>
+                              <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
+                                CONNECT WALLET
+                              </Button>
+                          </div>
+                        ):(
+                          <>
+                            {
+                              claimData.status === 0 &&
+                              <div className="justify-content-between px-5 mb-1">
+                                <h2 className="font-weight-bold">Purchased: {toFixed(accountData.presaleclaimkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                                <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                                <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                              </div>
+                            }
+                            {
+                              claimData.status === 1 && 
+                                <PresaleClaimBox claimData={claimData}/>
+                            }
+                          </>
+                        )
+                      }
                     </div>
-                    <hr/>
-                    {
-                      !account ?
-                      (
-                        <div>
-                            <div className="live-notice mt-3 mb-2">
-                              <h1>Connect Wallet To Access Claim!</h1>
-                            </div>
-                            <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
-                              CONNECT WALLET
-                            </Button>
-                        </div>
-                      ):(
-                        <>
-                          {
-                            claimData.status === 0 &&
-                            <div className="justify-content-between px-5 mb-1">
-                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.teamkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                              <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                              <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                            </div>
-                          }
-                          {
-                            claimData.status === 1 && 
-                              <TeamBox claimData={claimData}/>
-                          }
-                        </>
-                      )
-                    }
                   </div>
-                </div>
+                  )
                 )
+                
                 }       
               </Col>
             </Row>
             <Row className="text-center body-bg mt-5 mb-5">
               <Col md={6} lg={4} className="katana">
-                { !accountData.airdropkataBalance ? (
-                  claimData.status === 1 ? null : (
-                    <div className="justify-content-between px-5 mb-1">
-                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.airdropkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                    </div>
-                  )
+                {!accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
                 ) : (
-                  <div className="pt-2 px-2">
-                  <div className="text-white box pt-2 pe-4 ps-4">
-                    <div className="mt-1">
-                      <div className="mt-3"><h2>Airdrop Claim</h2></div>
+                  !accountData.airdropkataBalance ? null : (
+                    <div className="pt-2 px-2">
+                    <div className="text-white box pt-2 pe-4 ps-4">
+                      <div className="mt-1">
+                        <div className="mt-3"><h2>Airdrop Claim</h2></div>
+                      </div>
+                      <hr/>
+                      {
+                        !account ?
+                        (
+                          <div>
+                              <div className="live-notice mt-3 mb-2">
+                                <h1>Connect Wallet To Access Claim!</h1>
+                              </div>
+                              <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
+                                CONNECT WALLET
+                              </Button>
+                          </div>
+                        ):(
+                          <>
+                            {
+                              claimData.status === 0 &&
+                              <div className="justify-content-between px-5 mb-1">
+                                <h2 className="font-weight-bold">Purchased: {toFixed(accountData.airdropkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                                <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                                <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                              </div>
+                            }
+                            {
+                              claimData.status === 1 && 
+                                <AirdropBox claimData={claimData}/>
+                            }
+                          </>
+                        )
+                      }
                     </div>
-                    <hr/>
-                    {
-                      !account ?
-                      (
-                        <div>
-                            <div className="live-notice mt-3 mb-2">
-                              <h1>Connect Wallet To Access Claim!</h1>
-                            </div>
-                            <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
-                              CONNECT WALLET
-                            </Button>
-                        </div>
-                      ):(
-                        <>
-                          {
-                            claimData.status === 0 &&
-                            <div className="justify-content-between px-5 mb-1">
-                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.airdropkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                              <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                              <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                            </div>
-                          }
-                          {
-                            claimData.status === 1 && 
-                              <AirdropBox claimData={claimData}/>
-                          }
-                        </>
-                      )
-                    }
                   </div>
-                </div>
-                )
+                  )
+                ) 
                 }  
               </Col>
               <Col md={6} lg={4} className="katana">
-                {
-                  !accountData.treasurykataBalance ? (
-                    claimData.status === 1 ? null : (
-                      <div className="justify-content-between px-5 mb-1">
-                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.treasurykataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                    </div> )
-                  ) : (
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
+                ) : (
+                  !accountData.treasurykataBalance ? null: (
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -303,19 +308,19 @@ const Landing = () => {
                   </div>
                 </div>
                   )
+                )
                 }
               </Col>
               <Col md={6} lg={4} className="katana">
-                {
-                  !accountData.developmentkataBalance ? (
-                    claimData.status === 1 ? null : (
-                      <div className="justify-content-between px-5 mb-1">
-                        <h2 className="font-weight-bold">Purchased: {toFixed(accountData.developmentkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                        <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                        <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                      </div>
-                    )
-                  ) : (
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
+                ) : (
+                  !accountData.developmentkataBalance ? null : (
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -353,22 +358,21 @@ const Landing = () => {
                   </div>
                 </div>
                   )
+                )  
                 }
               </Col>
             </Row>
             <Row className="text-center body-bg mb-5">
              <Col md={6} lg={4} className="katana">
-              {
-                !accountData.marketingkataBalance ? (
-                  
-                    claimData.status === 1 ? null :
-                    <div className="justify-content-between px-5 mb-1">
-                      <h2 className="font-weight-bold">Purchased: {toFixed(accountData.marketingkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
-                      <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
-                      <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
-                    </div>
-                  
-                ) : (
+              { !accountData ? (
+                <LoaderSpinner
+                  type="ThreeDots"
+                  color="#429B2B"
+                  height={30}
+                  width={30}
+                />
+              ) : (
+                !accountData.marketingkataBalance ? null : (
                   <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -406,7 +410,59 @@ const Landing = () => {
                   </div>
                 </div>
                 )
+              )
               }
+              </Col>
+              <Col md={6} lg={4} className="katana">
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
+                ) : (
+                  !accountData.teamkataBalance ? null : (
+                    <div className="pt-2 px-2">
+                    <div className="text-white box pt-2 pe-4 ps-4">
+                      <div className="mt-1">
+                        <div className="mt-3"><h2>Team Claim</h2></div>
+                      </div>
+                      <hr/>
+                      {
+                        !account ?
+                        (
+                          <div>
+                              <div className="live-notice mt-3 mb-2">
+                                <h1>Connect Wallet To Access Claim!</h1>
+                              </div>
+                              <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
+                                CONNECT WALLET
+                              </Button>
+                          </div>
+                        ):(
+                          <>
+                            {
+                              claimData.status === 0 &&
+                              <div className="justify-content-between px-5 mb-1">
+                                <h2 className="font-weight-bold">Purchased: {toFixed(accountData.teamkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                                <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                                <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                              </div>
+                            }
+                            {
+                              claimData.status === 1 && 
+                                <TeamBox claimData={claimData}/>
+                            }
+                          </>
+                        )
+                      }
+                    </div>
+                  </div>
+                  )
+                )
+                
+                }       
               </Col>
             </Row>
         </Container>

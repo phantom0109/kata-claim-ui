@@ -7,7 +7,7 @@ import { useState, useCallback, useContext } from 'react';
 import { NotificationManager } from 'react-notifications';
 import {Web3WrapperContext} from "contexts/Web3WrapperProvider";
 
-const PresaleBox = (props) => {
+const PresaleClaimBox = (props) => {
 
   const accountData = useAccountData();
   const { web3Wrapper: wrapper } = useContext(Web3WrapperContext);
@@ -15,24 +15,24 @@ const PresaleBox = (props) => {
   
   const handleClaim = useCallback(async () => {
     if (!wrapper) return;
-    if (isNaN(Number(accountData?.presaleclaimable)) || Number(accountData?.presaleclaimable) <= 0) {
+    if (isNaN(Number(accountData?.presaleclaimclaimable)) || Number(accountData?.presaleclaimclaimable) <= 0) {
       NotificationManager.error("If you still have remaining tokens to claim, please wait until the next unlock.", "Nothing to claim!");
       return;
     }
     setClaimReqeusted(true);
-    const txHash = await wrapper.teamclaim();
+    const txHash = await wrapper.presaleclaimclaim();
     setClaimReqeusted(false);
     if (!txHash) {
       NotificationManager.error('Claim Transaction Error');
       return;
     }
     
-    NotificationManager.success(`${accountData?.presaleclaimable} ${tokenInfos.KATA.symbol} claimed`, 'Claim Success');
+    NotificationManager.success(`${accountData?.presaleclaimclaimable} ${tokenInfos.KATA.symbol} claimed`, 'Claim Success');
 
   }, [accountData, wrapper])
   
   const getClaimText = useCallback(() => {
-    if (!accountData || !accountData.presaleclaimable) return "Nothing to Claim";
+    if (!accountData || !accountData.presaleclaimclaimable) return "Nothing to Claim";
     return "Claim";
   }, [accountData])
 
@@ -48,19 +48,19 @@ const PresaleBox = (props) => {
         />
         
       ):(
-          accountData.presalekataBalance? (
+          accountData.presaleclaimkataBalance? (
               <div className='mt-3 '>
                 <div className="d-flex justify-content-between px-1 mb-1">
                   <h5 className="claim-info">Purchased:</h5>
-                  <h3 className="font-weight-bold claim-color">{toFixed(accountData.presalekataBalance,2)} $KATA</h3>
+                  <h3 className="font-weight-bold claim-color">{toFixed(accountData.presaleclaimkataBalance,2)} $KATA</h3>
                 </div>
                 <div className="d-flex justify-content-between px-1 mb-1">
                     <h5 className="claim-info">Claimed: </h5>
-                    <h3 className="font-weight-bold text-right claim-color"> {toFixed(accountData.presaleclaimed, 2)} $KATA</h3>
+                    <h3 className="font-weight-bold text-right claim-color"> {toFixed(accountData.presaleclaimclaimed, 2)} $KATA</h3>
                 </div>
                 <div className="d-flex justify-content-between px-1 mb-1">
                     <h5>Now Claim: </h5>
-                    <h3 className="font-weight-bold text-right claim-now-color"> {toFixed(accountData.presaleclaimable, 2)} $KATA</h3>
+                    <h3 className="font-weight-bold text-right claim-now-color"> {toFixed(accountData.presaleclaimclaimable, 2)} $KATA</h3>
                 </div>
 
                 <div className="py-4">
@@ -76,12 +76,11 @@ const PresaleBox = (props) => {
               </div>
           )
           :
-          // <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
-          null
+          <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
       )
       }
     </>
   )
 }
 
-export default PresaleBox;
+export default PresaleClaimBox;

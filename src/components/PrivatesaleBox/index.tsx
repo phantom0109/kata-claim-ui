@@ -7,7 +7,7 @@ import { useState, useCallback, useContext } from 'react';
 import { NotificationManager } from 'react-notifications';
 import {Web3WrapperContext} from "contexts/Web3WrapperProvider";
 
-const DevelopmentBox = (props) => {
+const PrivatesaleBox = (props) => {
 
   const accountData = useAccountData();
   const { web3Wrapper: wrapper } = useContext(Web3WrapperContext);
@@ -15,24 +15,24 @@ const DevelopmentBox = (props) => {
   
   const handleClaim = useCallback(async () => {
     if (!wrapper) return;
-    if (isNaN(Number(accountData?.developmentclaimable)) || Number(accountData?.developmentclaimable) <= 0) {
+    if (isNaN(Number(accountData?.privatesaleclaimable)) || Number(accountData?.privatesaleclaimable) <= 0) {
       NotificationManager.error("If you still have remaining tokens to claim, please wait until the next unlock.", "Nothing to claim!");
       return;
     }
     setClaimReqeusted(true);
-    const txHash = await wrapper.developmentclaim();
+    const txHash = await wrapper.privatesaleclaim();
     setClaimReqeusted(false);
     if (!txHash) {
       NotificationManager.error('Claim Transaction Error');
       return;
     }
     
-    NotificationManager.success(`${accountData?.developmentclaimable} ${tokenInfos.KATA.symbol} claimed`, 'Claim Success');
+    NotificationManager.success(`${accountData?.privatesaleclaimable} ${tokenInfos.KATA.symbol} claimed`, 'Claim Success');
 
   }, [accountData, wrapper])
   
   const getClaimText = useCallback(() => {
-    if (!accountData || !accountData.developmentclaimable) return "Nothing to Claim";
+    if (!accountData || !accountData.privatesaleclaimable) return "Nothing to Claim";
     return "Claim";
   }, [accountData])
 
@@ -48,19 +48,19 @@ const DevelopmentBox = (props) => {
         />
         
       ):(
-          accountData.developmentkataBalance? (
+          accountData.privatesalekataBalance? (
               <div className='mt-3 '>
                 <div className="d-flex justify-content-between px-1 mb-1">
                   <h5 className="claim-info">Purchased:</h5>
-                  <h3 className="font-weight-bold claim-color">{toFixed(accountData.developmentkataBalance,2)} $KATA</h3>
+                  <h3 className="font-weight-bold claim-color">{toFixed(accountData.privatesalekataBalance,2)} $KATA</h3>
                 </div>
                 <div className="d-flex justify-content-between px-1 mb-1">
                     <h5 className="claim-info">Claimed: </h5>
-                    <h3 className="font-weight-bold text-right claim-color"> {toFixed(accountData.developmentclaimed, 2)} $KATA</h3>
+                    <h3 className="font-weight-bold text-right claim-color"> {toFixed(accountData.privatesaleclaimed, 2)} $KATA</h3>
                 </div>
                 <div className="d-flex justify-content-between px-1 mb-1">
                     <h5>Now Claim: </h5>
-                    <h3 className="font-weight-bold text-right claim-now-color"> {toFixed(accountData.developmentclaimable, 2)} $KATA</h3>
+                    <h3 className="font-weight-bold text-right claim-now-color"> {toFixed(accountData.privatesaleclaimable, 2)} $KATA</h3>
                 </div>
 
                 <div className="py-4">
@@ -76,11 +76,12 @@ const DevelopmentBox = (props) => {
               </div>
           )
           :
-          <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
+          // <h3 className="font-weight-bold no-kata-purchased">This account can't claim.</h3>
+          null
       )
       }
     </>
   )
 }
 
-export default DevelopmentBox;
+export default PrivatesaleBox;

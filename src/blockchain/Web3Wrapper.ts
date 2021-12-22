@@ -2,8 +2,10 @@ import Web3 from 'web3';
 import { addresses, tokenInfos } from './constants';
 import ERC20 from "./contracts/ERC20";
 import VestingContract from './contracts/VestingContract';
+import PresaleCliam from './contracts/PresaleClaim';
 import { BntoNum } from './utils';
 import moment from "moment";
+import Presale from './contracts/Presale';
 
 export default class Web3Wrapper {
     web3: Web3;
@@ -18,8 +20,9 @@ export default class Web3Wrapper {
     TreasuryVesting: VestingContract;
     DevelopmentVesting: VestingContract;
     MarketingVesting: VestingContract;
-    PresaleVesting: VestingContract;
-
+    PrivatesaleVesting: VestingContract;
+    PresaleClaimVesting: PresaleCliam;
+    Presale: Presale;
     constructor(web3, chainId, account, options = {}) {
 
         this.web3 = web3;
@@ -39,7 +42,9 @@ export default class Web3Wrapper {
         this.TreasuryVesting = new VestingContract(this.wrapperOptions, addresses.treasuryVesting[this.chainId]);
         this.DevelopmentVesting = new VestingContract(this.wrapperOptions, addresses.developmentVesting[this.chainId]);
         this.MarketingVesting = new VestingContract(this.wrapperOptions, addresses.marketingVesting[this.chainId]);
-        this.PresaleVesting = new VestingContract(this.wrapperOptions,addresses.presaleVesting[this.chainId]);
+        this.PrivatesaleVesting = new VestingContract(this.wrapperOptions,addresses.privatesaleVesting[this.chainId]);
+        this.PresaleClaimVesting = new PresaleCliam(this.wrapperOptions, addresses.presaleclaimVesting[this.chainId]);
+        this.Presale = new Presale(this.wrapperOptions, addresses.Presale[this.chainId]);
     } 
     async getAccountData() {
 
@@ -75,10 +80,14 @@ export default class Web3Wrapper {
         const marketingclaimed = marketingMember.claimedAmount;
         const marketingclaimable = await this.MarketingVesting.call("claimableAmount",this.account,currentTime);
 
-        const presaleMember = await this.PresaleVesting.getMember(this.account);
-        const presalekataBalance = presaleMember.totalAmount;
-        const presaleclaimed = presaleMember.claimedAmount;
-        const presaleclaimable = await this.PresaleVesting.call("claimableAmount",this.account,currentTime);
+        const privatesaleMember = await this.PrivatesaleVesting.getMember(this.account);
+        const privatesalekataBalance = privatesaleMember.totalAmount;
+        const privatesaleclaimed = privatesaleMember.claimedAmount;
+        const privatesaleclaimable = await this.PrivatesaleVesting.call("claimableAmount",this.account,currentTime);
+
+        const presaleclaimkataBlance = await this.Presale.call("buyTokens", this.account);
+        const presaleclaimclaimed = await this.PresaleClaimVesting.call("claimedTokens", this.account);
+        const presaleclaimclaimable = await this.PresaleClaimVesting.call("getClaimable");
         return {
 
             seedsaleclaimed:BntoNum(seedsaleclaimed,tokenInfos.KATA.decimals),
@@ -105,9 +114,13 @@ export default class Web3Wrapper {
             marketingkataBalance:BntoNum(marketingkataBalance,tokenInfos.KATA.decimals),
             marketingclaimable:BntoNum(marketingclaimable,tokenInfos.KATA.decimals),
 
-            presaleclaimed:BntoNum(presaleclaimed,tokenInfos.KATA.decimals),
-            presalekataBalance:BntoNum(presalekataBalance,tokenInfos.KATA.decimals),
-            presaleclaimable:BntoNum(presaleclaimable,tokenInfos.KATA.decimals),
+            privatesaleclaimed:BntoNum(privatesaleclaimed,tokenInfos.KATA.decimals),
+            privatesalekataBalance:BntoNum(privatesalekataBalance,tokenInfos.KATA.decimals),
+            privatesaleclaimable:BntoNum(privatesaleclaimable,tokenInfos.KATA.decimals),
+
+            presaleclaimkataBlance:BntoNum(presaleclaimkataBlance,tokenInfos.KATA.decimals),
+            presaleclaimclaimed:BntoNum(presaleclaimclaimed,tokenInfos.KATA.decimals),
+            presaleclaimclaimable:BntoNum(presaleclaimclaimable,tokenInfos.KATA.decimals),
         }
     }    
 
@@ -171,9 +184,19 @@ export default class Web3Wrapper {
         }
     }
 
-    async presaleclaim() {
+    async privatesaleclaim() {
         try {
-            const tx = await this.PresaleVesting.send("claim", null);
+            const tx = await this.PrivatesaleVesting.send("claim", null);
+            return tx;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
+
+    async presaleclaimclaim() {
+        try {
+            const tx = await this.PrivatesaleVesting.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);

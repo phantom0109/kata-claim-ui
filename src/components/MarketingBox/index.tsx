@@ -20,7 +20,7 @@ const MarketingBox = (props) => {
       return;
     }
     setClaimReqeusted(true);
-    const txHash = await wrapper.teamclaim();
+    const txHash = await wrapper.marketingclaim();
     setClaimReqeusted(false);
     if (!txHash) {
       NotificationManager.error('Claim Transaction Error');

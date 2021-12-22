@@ -13,29 +13,40 @@ export const networkNames = {
 }
 
 export const addresses = {
-  Claim: {
-    42: '0x9D2EF314A03E663aE7e35D030ed1723a5DdFc745',
-  },
   seedsaleVesting: {
-    5: '0x20B877887AC9c63fdb0aF476EBB3FD53e2288000'
+    5: '0x20B877887AC9c63fdb0aF476EBB3FD53e2288000',
+    1: ''
   },
-  presaleVesting: {
-    5: '0xF9A75E8881af1BE80aE80050616185f0b924A03e'
+  privatesaleVesting: {
+    5: '0xF9A75E8881af1BE80aE80050616185f0b924A03e',
+    1: ''
   },
   teamVesting: {
-    5: '0x6d36B081D1211A1604cf352e8e309Cf220f746f9'
+    5: '0x6d36B081D1211A1604cf352e8e309Cf220f746f9',
+    1: ''
   },
   airdropVesting: {
-    5: '0xc1287017dddAD48eC92AeE1586518811ffABa419'
+    5: '0xc1287017dddAD48eC92AeE1586518811ffABa419',
+    1: ''
   },
   treasuryVesting: {
-    5: '0xBC9a5Be88ECCC2Bd2d8b791509708c254343fF97'
+    5: '0xBC9a5Be88ECCC2Bd2d8b791509708c254343fF97',
+    1: ''
   },
   developmentVesting: {
-    5: '0x9933fD980C65d3Ba08d67Eae8c1cD74c0DA408ea'
+    5: '0x9933fD980C65d3Ba08d67Eae8c1cD74c0DA408ea',
+    1: ''
   },
   marketingVesting: {
-    5: '0x8Ac0420DA6702744351C1e67d93A5767a576f0A4'
+    5: '0x8Ac0420DA6702744351C1e67d93A5767a576f0A4',
+    1: ''
+  },
+  presaleclaimVesting: {
+    5: '',
+    1: ''
+  },
+  Presale: {
+    1:''
   }
 }
 
