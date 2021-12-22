@@ -85,9 +85,9 @@ export default class Web3Wrapper {
         const privatesaleclaimed = privatesaleMember.claimedAmount;
         const privatesaleclaimable = await this.PrivatesaleVesting.call("claimableAmount",this.account,currentTime);
 
-        const presaleclaimkataBlance = await this.Presale.call("buyTokens", this.account);
+        const presaleclaimkataBalance = await this.Presale.call("buyTokens", this.account);
         const presaleclaimclaimed = await this.PresaleClaimVesting.call("claimedTokens", this.account);
-        const presaleclaimclaimable = await this.PresaleClaimVesting.call("getClaimable");
+        const presaleclaimclaimable = await this.PresaleClaimVesting.call("getClaimable",currentTime);
         return {
 
             seedsaleclaimed:BntoNum(seedsaleclaimed,tokenInfos.KATA.decimals),
@@ -118,7 +118,7 @@ export default class Web3Wrapper {
             privatesalekataBalance:BntoNum(privatesalekataBalance,tokenInfos.KATA.decimals),
             privatesaleclaimable:BntoNum(privatesaleclaimable,tokenInfos.KATA.decimals),
 
-            presaleclaimkataBlance:BntoNum(presaleclaimkataBlance,tokenInfos.KATA.decimals),
+            presaleclaimkataBlance:BntoNum(presaleclaimkataBalance,tokenInfos.KATA.decimals),
             presaleclaimclaimed:BntoNum(presaleclaimclaimed,tokenInfos.KATA.decimals),
             presaleclaimclaimable:BntoNum(presaleclaimclaimable,tokenInfos.KATA.decimals),
         }
