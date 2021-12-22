@@ -118,7 +118,7 @@ export default class Web3Wrapper {
             privatesalekataBalance:BntoNum(privatesalekataBalance,tokenInfos.KATA.decimals),
             privatesaleclaimable:BntoNum(privatesaleclaimable,tokenInfos.KATA.decimals),
 
-            presaleclaimkataBlance:BntoNum(presaleclaimkataBalance,tokenInfos.KATA.decimals),
+            presaleclaimkataBalance:BntoNum(presaleclaimkataBalance,tokenInfos.KATA.decimals),
             presaleclaimclaimed:BntoNum(presaleclaimclaimed,tokenInfos.KATA.decimals),
             presaleclaimclaimable:BntoNum(presaleclaimclaimable,tokenInfos.KATA.decimals),
         }
