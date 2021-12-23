@@ -14,7 +14,7 @@ export default class Web3Wrapper {
     wrapperOptions: any;
 
     kataToken: ERC20;
-    AdvisorVesting: VestingContract;
+    AdvisorVesting?: VestingContract;
     seedsaleVesting: VestingContract;
     TeamVesting: VestingContract;
     AirdropVesting: VestingContract;
@@ -38,18 +38,24 @@ export default class Web3Wrapper {
         this.kataToken = new ERC20(this.wrapperOptions, tokenInfos.KATA.address[this.chainId]);
 
         this.seedsaleVesting = new VestingContract(this.wrapperOptions, addresses.seedsaleVesting[this.chainId]);
-        this.AdvisorVesting = new VestingContract(this.wrapperOptions, addresses.advisorVesting[this.chainId]);
         this.TeamVesting = new VestingContract(this.wrapperOptions, addresses.teamVesting[this.chainId]);
         this.AirdropVesting = new VestingContract(this.wrapperOptions, addresses.airdropVesting[this.chainId]);
         this.TreasuryVesting = new VestingContract(this.wrapperOptions, addresses.treasuryVesting[this.chainId]);
         this.DevelopmentVesting = new VestingContract(this.wrapperOptions, addresses.developmentVesting[this.chainId]);
         this.MarketingVesting = new VestingContract(this.wrapperOptions, addresses.marketingVesting[this.chainId]);
         this.PrivatesaleVesting = new VestingContract(this.wrapperOptions,addresses.privatesaleVesting[this.chainId]);
+
         if (addresses.presaleclaimVesting[this.chainId]) {
           this.PresaleClaimVesting = new PresaleCliam(this.wrapperOptions, addresses.presaleclaimVesting[this.chainId]);
         } else {
           this.PresaleClaimVesting = undefined;
         }
+        if (addresses.advisorVesting[this.chainId]) {
+            this.AdvisorVesting = new VestingContract(this.wrapperOptions, addresses.advisorVesting[this.chainId]);
+        } else {
+            this.AdvisorVesting = undefined;
+        }
+        
         if (addresses.Presale[this.chainId]) {
           this.Presale = new Presale(this.wrapperOptions, addresses.Presale[this.chainId]);
         } else {
@@ -65,10 +71,10 @@ export default class Web3Wrapper {
         const seedsaleclaimed = seedsaleMember.claimedAmount;
         const seedsaleclaimable = await this.seedsaleVesting.call("claimableAmount",this.account,currentTime);
 
-        const advisorMember = await this.AdvisorVesting.getMember(this.account);
-        const advisorkataBalance = advisorMember.totalAmount;
-        const advisorclaimed = advisorMember.claimedAmount;
-        const advisorclaimable = await this.AdvisorVesting.call("claimableAmount",this.account,currentTime);
+        const advisorMember =this.AdvisorVesting? await this.AdvisorVesting.getMember(this.account):'0';
+        const advisorkataBalance = advisorMember==="0" ? 0 : advisorMember.totalAmount;
+        const advisorclaimed = advisorMember==="0" ? 0 : advisorMember.claimedAmount;
+        const advisorclaimable =this.AdvisorVesting? await this.AdvisorVesting.call("claimableAmount",this.account,currentTime):'0';
 
         const teamMember = await this.TeamVesting.getMember(this.account);
         const teamkataBalance = teamMember.totalAmount;
@@ -155,7 +161,7 @@ export default class Web3Wrapper {
 
     async advisorclaim() {
         try {
-            const tx = await this.AdvisorVesting.send("claim", null);
+            const tx = await this.AdvisorVesting?.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);
