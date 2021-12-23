@@ -46,6 +46,9 @@ export const addresses = {
   },
   Presale: {
     1:'0x3D0A17185610a095873Dada98D52242933923F91'
+  },
+  advisorVesting: {
+    1:'0x206E03e9fEb74803E8939B535792a35d8A21bA55'
   }
 }
 

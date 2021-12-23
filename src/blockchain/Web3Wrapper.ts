@@ -14,6 +14,7 @@ export default class Web3Wrapper {
     wrapperOptions: any;
 
     kataToken: ERC20;
+    AdvisorVesting: VestingContract;
     seedsaleVesting: VestingContract;
     TeamVesting: VestingContract;
     AirdropVesting: VestingContract;
@@ -37,6 +38,7 @@ export default class Web3Wrapper {
         this.kataToken = new ERC20(this.wrapperOptions, tokenInfos.KATA.address[this.chainId]);
 
         this.seedsaleVesting = new VestingContract(this.wrapperOptions, addresses.seedsaleVesting[this.chainId]);
+        this.AdvisorVesting = new VestingContract(this.wrapperOptions, addresses.advisorVesting[this.chainId]);
         this.TeamVesting = new VestingContract(this.wrapperOptions, addresses.teamVesting[this.chainId]);
         this.AirdropVesting = new VestingContract(this.wrapperOptions, addresses.airdropVesting[this.chainId]);
         this.TreasuryVesting = new VestingContract(this.wrapperOptions, addresses.treasuryVesting[this.chainId]);
@@ -62,6 +64,11 @@ export default class Web3Wrapper {
         const seedsalekataBalance = seedsaleMember.totalAmount;
         const seedsaleclaimed = seedsaleMember.claimedAmount;
         const seedsaleclaimable = await this.seedsaleVesting.call("claimableAmount",this.account,currentTime);
+
+        const advisorMember = await this.AdvisorVesting.getMember(this.account);
+        const advisorkataBalance = advisorMember.totalAmount;
+        const advisorclaimed = advisorMember.claimedAmount;
+        const advisorclaimable = await this.AdvisorVesting.call("claimableAmount",this.account,currentTime);
 
         const teamMember = await this.TeamVesting.getMember(this.account);
         const teamkataBalance = teamMember.totalAmount;
@@ -102,6 +109,10 @@ export default class Web3Wrapper {
             seedsalekataBalance:BntoNum(seedsalekataBalance,tokenInfos.KATA.decimals),
             seedsaleclaimable:BntoNum(seedsaleclaimable,tokenInfos.KATA.decimals),
 
+            advisorclaimed:BntoNum(advisorclaimed,tokenInfos.KATA.decimals),
+            advisorkataBalance:BntoNum(advisorkataBalance,tokenInfos.KATA.decimals),
+            advisorclaimable:BntoNum(advisorclaimable,tokenInfos.KATA.decimals),
+
             teamclaimed:BntoNum(teamclaimed,tokenInfos.KATA.decimals),
             teamkataBalance:BntoNum(teamkataBalance,tokenInfos.KATA.decimals),
             teamclaimable:BntoNum(teamclaimable,tokenInfos.KATA.decimals),
@@ -135,6 +146,16 @@ export default class Web3Wrapper {
     async seedsaleclaim() {
         try {
             const tx = await this.seedsaleVesting.send("claim", null);
+            return tx;
+        } catch (e) {
+            console.log(e);
+            return false;
+        }
+    }
+
+    async advisorclaim() {
+        try {
+            const tx = await this.AdvisorVesting.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);

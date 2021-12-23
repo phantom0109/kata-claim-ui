@@ -16,6 +16,7 @@ import DevelopmentBox from 'components/DevelopmentBox';
 import MarketingBox from 'components/MarketingBox';
 import PrivatesaleBox from 'components/PrivatesaleBox';
 import PresaleClaimBox from 'components/PresaleClaimBox';
+import AdvisorBox from 'components/AdvisorBox';
 
 const Landing = () => {
 
@@ -372,7 +373,56 @@ const Landing = () => {
                 )
                 }
 
-
+                { !accountData ? (
+                  <LoaderSpinner
+                    type="ThreeDots"
+                    color="#429B2B"
+                    height={30}
+                    width={30}
+                  />
+                ) : (
+                  !accountData.advisorkataBalance ? null : (
+                      <div className="katana">
+                    <div className="pt-2 px-2">
+                  <div className="text-white box pt-2 pe-4 ps-4">
+                    <div className="mt-1">
+                      <div className="mt-3"><h2>Advisor Claim</h2></div>
+                    </div>
+                    <hr/>
+                    {
+                      !account ?
+                      (
+                        <div>
+                            <div className="live-notice mt-3 mb-2">
+                              <h1>Connect Wallet To Access Claim!</h1>
+                            </div>
+                            <Button className="btn-primary skew-btn px-2 py-2 my-3 mx-3" onClick={handleConnectWallet}>
+                              CONNECT WALLET
+                            </Button>
+                        </div>
+                      ):(
+                        <>
+                          {
+                            claimData.status === 0 &&
+                            <div className="justify-content-between px-5 mb-1">
+                              <h2 className="font-weight-bold">Purchased: {toFixed(accountData.advisorkataBalance, 2)} {tokenInfos.KATA.symbol}</h2>
+                              <h3 className="no-claim-start">$KATA starts being unlocked from</h3>
+                              <h3 className="no-claim-start">{getDateStr(claimData.tgeTime)}</h3>
+                            </div>
+                          }
+                          {
+                            claimData.status === 1 &&
+                              <AdvisorBox claimData={claimData}/>
+                          }
+                        </>
+                      )
+                    }
+                  </div>
+                </div>
+                    </div>
+                  )
+                )
+                }   
 
 
               { !accountData ? (
@@ -479,7 +529,7 @@ const Landing = () => {
 
                 }
 
-        </div>
+            </div>
         </div>
          )
       }
