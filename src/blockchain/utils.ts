@@ -31,10 +31,10 @@ export const getDefaultWeb3 = () => {
 
 export const getDefaultContractOptions = () => {
   const web3 = getDefaultWeb3();
-  return { 
-    web3, 
-    chainId: defaultChainId, 
-    account: null 
+  return {
+    web3,
+    chainId: defaultChainId,
+    account: null
   };
 }
 
@@ -63,9 +63,12 @@ export const getDateStr = (tiemstamp) => {
   return output;
 }
 
-export const getClaimData = async () => {
-  const seesaleclaim = new VestingContract(getDefaultContractOptions(), addresses.seedsaleVesting[defaultChainId]);
-  const tgeTime = Number(await seesaleclaim.call("tgeTime"));
+export const getClaimData = async (chainId) => {
+  const wrapperOptions = {
+    web3: createWeb3(rpcUrls[chainId]), chainId, account: null,
+  };
+  const seedsaleclaim = new VestingContract(wrapperOptions, addresses.seedsaleVesting[chainId]);
+  const tgeTime = Number(await seedsaleclaim.call("tgeTime"));
 
   let currentTime = moment().unix();
   let status = 0;

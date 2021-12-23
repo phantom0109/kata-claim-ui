@@ -36,7 +36,7 @@ const Landing = () => {
 
   return (
     <>
-      {!claimData?(         
+      {!claimData || !accountData ?(
         <Container className="landing">
             <div className='page-loading'>
               <LoaderSpinner
@@ -46,17 +46,16 @@ const Landing = () => {
                 width={100}
               />
             </div>
-          </Container> 
+          </Container>
           ):(
-          <Container className="landing">
-            <Row className="text-center">
+          <div className="landing">
+            <div className="text-center">
                 <h1 className="mt-5 mb-5 upper-text">
-                  Katana Inu
-                  &nbsp;Claim
+                  Katana Inu Claim
                 </h1>
-            </Row>
-            <Row className="text-center body-bg mt-2">
-              <Col md={6} lg={4} className="katana">
+            </div>
+            <div className="text-center grid">
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -67,6 +66,7 @@ const Landing = () => {
                 ) : (
                   !accountData.seedsalekataBalance ? null
                     : (
+                            <div className="katana">
                    <div className="pt-2 px-2">
                    <div className="text-white box pt-2 pe-4 ps-4">
                      <div className="mt-1">
@@ -95,7 +95,7 @@ const Landing = () => {
                              </div>
                            }
                            {
-                             claimData.status === 1 && 
+                             claimData.status === 1 &&
                                <SeedsaleBox claimData={claimData}/>
                            }
                          </>
@@ -103,11 +103,12 @@ const Landing = () => {
                      }
                    </div>
                  </div>
+                     </div>
                  )
                 )
                 }
-              </Col>
-              <Col md={6} lg={4} className="katana">
+
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -117,6 +118,7 @@ const Landing = () => {
                    />
                 ) : (
                   !accountData.privatesalekataBalance ? null : (
+                        <div className="katana">
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -145,7 +147,7 @@ const Landing = () => {
                             </div>
                           }
                           {
-                            claimData.status === 1 && 
+                            claimData.status === 1 &&
                               <PrivatesaleBox claimData={claimData}/>
                           }
                         </>
@@ -153,12 +155,13 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                      </div>
                   )
                 )
                 }
-                
-              </Col>
-              <Col md={6} lg={4} className="katana">
+
+
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -168,6 +171,7 @@ const Landing = () => {
                   />
                 ) : (
                   !accountData.presaleclaimkataBalance ? null : (
+                        <div className="katana">
                     <div className="pt-2 px-2">
                     <div className="text-white box pt-2 pe-4 ps-4">
                       <div className="mt-1">
@@ -196,7 +200,7 @@ const Landing = () => {
                               </div>
                             }
                             {
-                              claimData.status === 1 && 
+                              claimData.status === 1 &&
                                 <PresaleClaimBox claimData={claimData}/>
                             }
                           </>
@@ -204,14 +208,15 @@ const Landing = () => {
                       }
                     </div>
                   </div>
+                    </div>
                   )
                 )
-                
-                }       
-              </Col>
-            </Row>
-            <Row className="text-center body-bg mt-5 mb-5">
-              <Col md={6} lg={4} className="katana">
+
+                }
+
+
+
+
                 {!accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -221,6 +226,7 @@ const Landing = () => {
                   />
                 ) : (
                   !accountData.airdropkataBalance ? null : (
+                      <div className="katana">
                     <div className="pt-2 px-2">
                     <div className="text-white box pt-2 pe-4 ps-4">
                       <div className="mt-1">
@@ -249,7 +255,7 @@ const Landing = () => {
                               </div>
                             }
                             {
-                              claimData.status === 1 && 
+                              claimData.status === 1 &&
                                 <AirdropBox claimData={claimData}/>
                             }
                           </>
@@ -257,11 +263,12 @@ const Landing = () => {
                       }
                     </div>
                   </div>
+                  </div>
                   )
-                ) 
-                }  
-              </Col>
-              <Col md={6} lg={4} className="katana">
+                )
+                }
+
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -271,6 +278,7 @@ const Landing = () => {
                   />
                 ) : (
                   !accountData.treasurykataBalance ? null: (
+                      <div className="katana">
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -299,7 +307,7 @@ const Landing = () => {
                             </div>
                           }
                           {
-                            claimData.status === 1 && 
+                            claimData.status === 1 &&
                               <TreasuryBox claimData={claimData}/>
                           }
                         </>
@@ -307,11 +315,12 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                  </div>
                   )
                 )
                 }
-              </Col>
-              <Col md={6} lg={4} className="katana">
+
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -321,6 +330,7 @@ const Landing = () => {
                   />
                 ) : (
                   !accountData.developmentkataBalance ? null : (
+                      <div className="katana">
                     <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -349,7 +359,7 @@ const Landing = () => {
                             </div>
                           }
                           {
-                            claimData.status === 1 && 
+                            claimData.status === 1 &&
                               <DevelopmentBox claimData={claimData}/>
                           }
                         </>
@@ -357,13 +367,14 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                    </div>
                   )
-                )  
+                )
                 }
-              </Col>
-            </Row>
-            <Row className="text-center body-bg mb-5">
-             <Col md={6} lg={4} className="katana">
+
+
+
+
               { !accountData ? (
                 <LoaderSpinner
                   type="ThreeDots"
@@ -373,6 +384,7 @@ const Landing = () => {
                 />
               ) : (
                 !accountData.marketingkataBalance ? null : (
+                  <div className="katana">
                   <div className="pt-2 px-2">
                   <div className="text-white box pt-2 pe-4 ps-4">
                     <div className="mt-1">
@@ -401,7 +413,7 @@ const Landing = () => {
                             </div>
                           }
                           {
-                            claimData.status === 1 && 
+                            claimData.status === 1 &&
                               <MarketingBox claimData={claimData}/>
                           }
                         </>
@@ -409,11 +421,12 @@ const Landing = () => {
                     }
                   </div>
                 </div>
+                  </div>
                 )
               )
               }
-              </Col>
-              <Col md={6} lg={4} className="katana">
+
+
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
@@ -423,6 +436,7 @@ const Landing = () => {
                   />
                 ) : (
                   !accountData.teamkataBalance ? null : (
+                    <div className="katana">
                     <div className="pt-2 px-2">
                     <div className="text-white box pt-2 pe-4 ps-4">
                       <div className="mt-1">
@@ -451,7 +465,7 @@ const Landing = () => {
                               </div>
                             }
                             {
-                              claimData.status === 1 && 
+                              claimData.status === 1 &&
                                 <TeamBox claimData={claimData}/>
                             }
                           </>
@@ -459,13 +473,14 @@ const Landing = () => {
                       }
                     </div>
                   </div>
+                    </div>
                   )
                 )
-                
-                }       
-              </Col>
-            </Row>
-        </Container>
+
+                }
+
+        </div>
+        </div>
          )
       }
     </>
@@ -473,4 +488,3 @@ const Landing = () => {
 }
 
 export default Landing;
-

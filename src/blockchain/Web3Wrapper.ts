@@ -21,8 +21,8 @@ export default class Web3Wrapper {
     DevelopmentVesting: VestingContract;
     MarketingVesting: VestingContract;
     PrivatesaleVesting: VestingContract;
-    PresaleClaimVesting: PresaleCliam;
-    Presale: Presale;
+    PresaleClaimVesting?: PresaleCliam;
+    Presale?: Presale;
     constructor(web3, chainId, account, options = {}) {
 
         this.web3 = web3;
@@ -35,7 +35,7 @@ export default class Web3Wrapper {
         }
 
         this.kataToken = new ERC20(this.wrapperOptions, tokenInfos.KATA.address[this.chainId]);
-       
+
         this.seedsaleVesting = new VestingContract(this.wrapperOptions, addresses.seedsaleVesting[this.chainId]);
         this.TeamVesting = new VestingContract(this.wrapperOptions, addresses.teamVesting[this.chainId]);
         this.AirdropVesting = new VestingContract(this.wrapperOptions, addresses.airdropVesting[this.chainId]);
@@ -43,9 +43,17 @@ export default class Web3Wrapper {
         this.DevelopmentVesting = new VestingContract(this.wrapperOptions, addresses.developmentVesting[this.chainId]);
         this.MarketingVesting = new VestingContract(this.wrapperOptions, addresses.marketingVesting[this.chainId]);
         this.PrivatesaleVesting = new VestingContract(this.wrapperOptions,addresses.privatesaleVesting[this.chainId]);
-        this.PresaleClaimVesting = new PresaleCliam(this.wrapperOptions, addresses.presaleclaimVesting[this.chainId]);
-        this.Presale = new Presale(this.wrapperOptions, addresses.Presale[this.chainId]);
-    } 
+        if (addresses.presaleclaimVesting[this.chainId]) {
+          this.PresaleClaimVesting = new PresaleCliam(this.wrapperOptions, addresses.presaleclaimVesting[this.chainId]);
+        } else {
+          this.PresaleClaimVesting = undefined;
+        }
+        if (addresses.Presale[this.chainId]) {
+          this.Presale = new Presale(this.wrapperOptions, addresses.Presale[this.chainId]);
+        } else {
+          this.Presale = undefined;
+        }
+    }
     async getAccountData() {
 
         let currentTime = moment().unix();
@@ -59,7 +67,7 @@ export default class Web3Wrapper {
         const teamkataBalance = teamMember.totalAmount;
         const teamclaimed = teamMember.claimedAmount;
         const teamclaimable = await this.TeamVesting.call("claimableAmount",this.account,currentTime);
-        
+
         const airdropMember = await this.AirdropVesting.getMember(this.account);
         const airdropkataBalance = airdropMember.totalAmount;
         const airdropclaimed = airdropMember.claimedAmount;
@@ -85,9 +93,9 @@ export default class Web3Wrapper {
         const privatesaleclaimed = privatesaleMember.claimedAmount;
         const privatesaleclaimable = await this.PrivatesaleVesting.call("claimableAmount",this.account,currentTime);
 
-        const presaleclaimkataBalance = await this.Presale.call("buyTokens", this.account);
-        const presaleclaimclaimed = await this.PresaleClaimVesting.call("claimedTokens", this.account);
-        const presaleclaimclaimable = await this.PresaleClaimVesting.call("getClaimable",currentTime);
+        const presaleclaimkataBalance = this.Presale ? await this.Presale.call("buyTokens", this.account) : '0';
+        const presaleclaimclaimed = this.PresaleClaimVesting ? await this.PresaleClaimVesting.call("claimedTokens", this.account) : '0';
+        const presaleclaimclaimable = this.PresaleClaimVesting ? await this.PresaleClaimVesting.call("getClaimable",currentTime) : '0';
         return {
 
             seedsaleclaimed:BntoNum(seedsaleclaimed,tokenInfos.KATA.decimals),
@@ -122,7 +130,7 @@ export default class Web3Wrapper {
             presaleclaimclaimed:BntoNum(presaleclaimclaimed,tokenInfos.KATA.decimals),
             presaleclaimclaimable:BntoNum(presaleclaimclaimable,tokenInfos.KATA.decimals),
         }
-    }    
+    }
 
     async seedsaleclaim() {
         try {
@@ -196,7 +204,7 @@ export default class Web3Wrapper {
 
     async presaleclaimclaim() {
         try {
-            const tx = await this.PresaleClaimVesting.send("claim", null);
+            const tx = await this.PresaleClaimVesting?.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);
