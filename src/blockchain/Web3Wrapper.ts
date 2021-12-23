@@ -196,7 +196,7 @@ export default class Web3Wrapper {
 
     async presaleclaimclaim() {
         try {
-            const tx = await this.PrivatesaleVesting.send("claim", null);
+            const tx = await this.PresaleClaimVesting.send("claim", null);
             return tx;
         } catch (e) {
             console.log(e);
