@@ -1,5 +1,5 @@
 import { useContext, useCallback, useEffect } from 'react';
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { toFixed, getDateStr } from 'blockchain/utils';
 import useClaimData from "hooks/useClaimData";
 import { Web3ModalContext } from "contexts/Web3ModalProvider";
