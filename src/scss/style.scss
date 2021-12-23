@@ -6,10 +6,22 @@ body {
 .landing {
   text-align: center;
   min-height: calc(100vh - 170px);
- 
-  // .katana{
-  //   margin: auto;
-  // }
+  max-width: 1280px;
+  width: calc(100vw - 40px);
+  margin: 0 auto;
+
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(calc(min(320px, max(320px, 33%))), 1fr));
+    grid-gap: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .katana{
+    height: 100%;
+  }
 
   .upper-text{
     font-weight: bold;
@@ -45,7 +57,7 @@ body {
     background: #429B2B;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
     min-width: 40%;
     .content{
