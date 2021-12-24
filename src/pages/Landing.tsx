@@ -39,13 +39,14 @@ const Landing = () => {
     <>
       {!claimData || !accountData ?(
         <Container className="landing">
-            <div className='page-loading'>
-              <LoaderSpinner
+            <div className='page-loading text-center mt-5'>
+              {/* <LoaderSpinner
                 type="ThreeDots"
                 color="#429B2B"
                 height={100}
                 width={100}
-              />
+              /> */}
+              <h1 className='connect-wallet-span'>Please connect your Wallet</h1>
             </div>
           </Container>
           ):(
