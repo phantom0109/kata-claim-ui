@@ -42,8 +42,10 @@ const Web3ModalProvider = ({ children }) => {
         options: {
           rpc: {
             42: rpcUrls[42],
+            1:rpcUrls[1],
+            5:rpcUrls[5]
           },
-          network: 'kovan',
+          network: 'Ethereum',
         }
       }
     };
