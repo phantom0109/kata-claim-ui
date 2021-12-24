@@ -10,7 +10,9 @@ body {
   width: calc(100vw - 40px);
   margin: 0 auto;
 
-
+  .connect-wallet-span{
+    color: #3BCF60;
+  }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(calc(min(400px, max(320px, 33%))), 1fr));
