@@ -37,7 +37,7 @@ const Landing = () => {
 
   return (
     <>
-      {!claimData || !accountData ?(
+      {!claimData && !accountData ?(
         <Container className="landing">
             <div className='page-loading text-center mt-5'>
               {/* <LoaderSpinner
@@ -57,7 +57,22 @@ const Landing = () => {
                 </h1>
             </div>
             <div className="text-center grid">
-
+                {!accountData ? (
+                  <LoaderSpinner
+                  type="ThreeDots"
+                  color="#429B2B"
+                  height={30}
+                  width={30}
+                />
+                ) : (
+                  (!accountData.seedsalekataBalance && !accountData.privatesalekataBalance && !accountData.presaleclaimkataBalance 
+                    && !accountData.airdropkataBalance && !accountData.treasurykataBalance && !accountData.developmentkataBalance
+                    && !accountData.advisorkataBalance && !accountData.marketingkataBalance && !accountData.teamkataBalance) ?
+                  <h3 className='claim-info-text'>Wallet connected but you don't seem to have any tokens to claim</h3> : (
+                    <></>
+                  )
+                )
+                }
                 { !accountData ? (
                   <LoaderSpinner
                     type="ThreeDots"
