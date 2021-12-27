@@ -45,17 +45,17 @@ const Web3ModalProvider = ({ children }) => {
             1:rpcUrls[1],
             5:rpcUrls[5]
           },
-          network: 'Ethereum',
+          network: 'mainnet',
         }
       }
     };
-  
+
     const _web3Modal = new Web3Modal({
       cacheProvider: true, // optional
       providerOptions, // required
       disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
     });
-  
+
     setWeb3Modal(_web3Modal);
   }, [])
 
@@ -96,14 +96,14 @@ const Web3ModalProvider = ({ children }) => {
       return;
 
     const _provider = await web3Modal.connect();
-    if (_provider === null) 
+    if (_provider === null)
       return;
-    
+
     const _web3 = createWeb3(_provider);
     setWeb3(_web3);
 
     await subscribeProvider(_provider, _web3);
-    
+
     const accounts = await _web3.eth.getAccounts();
     const _account = _web3.utils.toChecksumAddress(accounts[0]);
     const _networkId = await _web3.eth.net.getId();
@@ -113,7 +113,7 @@ const Web3ModalProvider = ({ children }) => {
     setNetworkId(Number(_networkId));
     setChainId(Number(_chainId));
     setConnected(true);
-    
+
   }, [web3Modal, subscribeProvider]);
 
   useEffect(() => {
@@ -135,9 +135,9 @@ const Web3ModalProvider = ({ children }) => {
   }, [web3Modal, web3, resetWeb3])
 
   return (
-    <Web3ModalContext.Provider 
-      value={{ 
-        web3, 
+    <Web3ModalContext.Provider
+      value={{
+        web3,
         connect,
         disconnect,
         account,
